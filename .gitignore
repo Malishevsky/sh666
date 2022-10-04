@@ -187,7 +187,7 @@ dmypy.json
 
 # mypy
 
-# Pyre type checker
+Pyre type checker
 
 # End of https://www.gitignore.io/api/python,django
 
