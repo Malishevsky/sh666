@@ -1,0 +1,37 @@
+{%load static%}
+
+<!DOCTYPE html PUBLIC >
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<head>
+<title>{%block title%}Автомобили{%endblock%}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href='{%static "infocar/basic.css"%}' />
+</head>
+<body>
+<div id="wrapper">
+  <div id="header">{%block header%} ALL AUTO {%endblock%}</div>
+  <ul id="nav">
+    {%for tr in t%}
+    <li><a href="{% url 'get_mechanical' tr.pk %}">{{tr.name}}</a></li>
+ {%endfor%}
+  </ul>
+  <div id="content" class="clearfix">
+    <div id="col_1">
+      <h2>Сортировка</h2>
+      <ul id="subnav">
+        <li><a href="{% url 'index' %}">На главную страницу</a></li><br>
+        <li><a href="{% url 'create' %}">Создать автомобиль</a></li><br>
+        {% block form %}{% endblock %}
+<!--        <li><a href="http://web-mastery.info/" >Авто на автомате</a></li>-->
+      </ul>
+    </div>
+    <div id="col_2">
+      {%block content%}
+      {%endblock%}
+    </div>
+  </div>
+  <div id="footer"><small>Создано при поддержке ITEC Corporation <br />
+
+</div>
+</body>
+</html>

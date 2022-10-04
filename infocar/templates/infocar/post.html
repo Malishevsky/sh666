@@ -1,0 +1,29 @@
+{%extends 'layout/basic.html'%}
+        {%block title%} {{post.firm}} {{post.model}} {%endblock%}
+        {%block header%} {{post.firm}} {{post.model}} {%endblock%}
+{%block content%}
+{%if post.image%}
+<p><center><img class="poster" src="{{post.image.url}}"></center></p>
+        {%endif%}
+<h1><center>{{post.firm}} {{post.model}} </center></h1>
+<h3><center>Двигатель : {{post.engine}} {{post.volume}}л.</center></h3>
+<h3><center>Коробка : {{post.transmission}}</center></h3>
+<h3><center>Цвет : {{post.color}}</center></h3>
+<h2><center>Цена : {{post.price}} USD </center></h2><br>
+
+        <p class="post-complectation"><center>КОМПЛЕКТАЦИЯ:</center></p>
+{%for i in post.complectations.all%}
+        <p class="post-complectations"><center>{{i}}</center></p>
+
+{%endfor%}
+<center>
+   <button type="button" onclick="window.open('{% url 'edit' post.slug %}','_self')">Редактировать</button>
+<form action="{%url 'del_auto' post.slug%}" method="POST">
+{% csrf_token%}
+    <input type="submit" value="Удалить">
+</form>
+</center>
+
+
+
+{%endblock%}

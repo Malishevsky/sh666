@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Привет Сергей</p>
+<div id="root"></div>
+<input type = 'button' id="btn" value="Показать JSON" >
+<script>
+    let root = document.querySelector('#root')
+    let btn = document.querySelector('#btn')
+    console.log(root)
+    btn.addEventListener('click',fn)
+
+    function fn() {
+    fetch('http://127.0.0.1:8000/ajax/a/')
+    .then(response=>response.json())
+            console.log(response)
+    .then(data=>{
+    console.log(data.arr)
+    root.innerHTML=`<div><p>${data.arr[0].id} ${data.arr[0].name}</p></div>
+                   <div><p>${data.arr[1].id}</p><p>${data.arr[1].name}</p></div>`
+    })
+    }
+</script>
+
+</body>
+</html>

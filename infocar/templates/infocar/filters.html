@@ -1,0 +1,24 @@
+{%extends 'layout/basic.html'%}
+{%block form%}
+<li><a>
+    <form method="POST">
+        {% csrf_token%}
+        {{form}}
+        <br><input type="submit" value="Фильтр"></input>
+    </form>
+    <br> </a></li>{%endblock%}
+{%block content%}
+
+{%for a in filter_car%}
+<h1>{{a.firm}} {{a.model}} </h1>
+<h3>Двигатель : {{a.engine}} {{a.volume}}л.</h3>
+<h3>Коробка : {{a.transmission}}</h3>
+<h3>Цвет : {{a.color}}</h3>
+<h2>Цена : {{a.price}} USD </h2><br>
+<form action="{{a.get_absolute_url}}"  method="POST">
+                {% csrf_token%}
+                <button>Показать полностью</button>
+        </form><br>
+
+{% endfor%}
+{%endblock%}
